@@ -8,7 +8,8 @@ import {
 } from './ContactForm.styled';
 import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
 
 const ContactFormSchema = Yup.object().shape({
   name: Yup.string()
@@ -27,10 +28,10 @@ const ContactFormSchema = Yup.object().shape({
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(state => state.contacts.contacts);
+  const contacts = useSelector(selectContacts);
   return (
     <Formik
-      initialValues={{ name: '', number: '' }}
+      initialValues={{ name: '', phone: '' }}
       validationSchema={ContactFormSchema}
       onSubmit={(values, actions) => {
         const isContactInList = contacts.some(
@@ -55,7 +56,7 @@ export const ContactForm = () => {
 
         <FormLabel>
           Number
-          <FormField name="number" type="tel" />
+          <FormField name="phone" type="tel" />
           <StyledErrorMsg component="div" name="number" />
         </FormLabel>
         <AddBtn type="submit">Add contact</AddBtn>

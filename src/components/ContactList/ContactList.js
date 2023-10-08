@@ -1,18 +1,14 @@
 import { ContactListItem } from 'components/ContactListItem/ContactListItem';
-import { StyledNotification } from 'components/Notification.styled';
+// import { StyledNotification } from 'components/Notification.styled';
 import { useSelector } from 'react-redux';
+import { selectFilteredContacts } from 'redux/selectors';
 import { ContactsList, ContactsListItem } from './ContactList.styled';
 
 export const ContactList = () => {
-  const contacts = useSelector(state => state.contacts.contacts);
-  const filter = useSelector(state => state.filter.filter);
-
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+  const filteredContacts = useSelector(selectFilteredContacts);
   return (
     <>
-      {filteredContacts.length > 0 ? (
+      {filteredContacts.length > 0 && (
         <ContactsList>
           {filteredContacts.map(contact => (
             <ContactsListItem key={contact.id}>
@@ -20,11 +16,6 @@ export const ContactList = () => {
             </ContactsListItem>
           ))}
         </ContactsList>
-      ) : (
-        <StyledNotification>
-          There are no contacts to show! Please add some contacts to the
-          phonebook or check your search query
-        </StyledNotification>
       )}
     </>
   );
