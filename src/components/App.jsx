@@ -22,7 +22,7 @@ export const App = () => {
     <>
       <StyledSection>
         <Container>
-          {isLoading && !error && <p>Loading...</p>}
+          {isLoading && !error && <p>LOADING...</p>}
           {error && <p>Something went wrong, please try reloading the page</p>}
           <SectionTitle>Phonebook</SectionTitle>
           <ContactForm />

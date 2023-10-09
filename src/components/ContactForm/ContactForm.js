@@ -20,7 +20,7 @@ const ContactFormSchema = Yup.object().shape({
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     )
     .required('Required'),
-  number: Yup.string()
+  phone: Yup.string()
     .min(9, 'Phone number must contain at least 9 symbols!')
     .max(13, 'Phone number must contain less than 13 symbols!')
     .required('Required'),
@@ -57,7 +57,7 @@ export const ContactForm = () => {
         <FormLabel>
           Number
           <FormField name="phone" type="tel" />
-          <StyledErrorMsg component="div" name="number" />
+          <StyledErrorMsg component="div" name="phone" />
         </FormLabel>
         <AddBtn type="submit">Add contact</AddBtn>
       </StyledForm>
